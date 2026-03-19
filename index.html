@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5F0E8;
+    --sand-deep: #EDE6D8;
+    --warm: #C8A882;
+    --warm-dark: #A8845A;
+    --ink: #2C2418;
+    --ink-soft: #5C4E3C;
+    --cream: #FDFBF7;
+    --accent: #D4A96A;
+    --blush: #E8D5C0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 24px;
+    position: relative;
+    scroll-snap-align: start;
+  }
+
+  .section-inner {
+    max-width: 560px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .section-inner.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-dark);
+    margin-bottom: 32px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--warm);
+    margin-top: 12px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 8vw, 72px);
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .highlight {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .italic {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--warm-dark);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(200, 168, 130, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(212, 169, 106, 0.05) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-3%, 2%) rotate(1deg); }
+  }
+
+  .hero .section-inner {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    color: var(--cream);
+    font-size: clamp(48px, 10vw, 88px);
+    margin-bottom: 16px;
+  }
+
+  .hero p {
+    color: rgba(245, 240, 232, 0.6);
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .hero .section-label {
+    color: var(--warm);
+  }
+
+  .hero .section-label::after {
+    background: var(--warm);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeInUp 1s 2.5s forwards;
+  }
+
+  .scroll-hint span {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.35);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--warm), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--warm), transparent);
+    margin: 0 auto 32px;
+    opacity: 0.5;
+  }
+
+  /* ── PACKING LIST ── */
+  .pack-list {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0;
+  }
+
+  .pack-list li {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--sand-deep);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pack-list li:last-child {
+    border-bottom: none;
+  }
+
+  .pack-list .bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--warm);
+    flex-shrink: 0;
+  }
+
+  /* ── ALTERNATING BG ── */
+  .sand-bg {
+    background: var(--sand);
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    border-left: 2px solid var(--warm);
+    padding-left: 24px;
+    margin: 32px 0;
+  }
+
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .closing h2 {
+    color: var(--cream);
+    font-size: clamp(36px, 7vw, 56px);
+    margin-bottom: 16px;
+  }
+
+  .closing p {
+    color: rgba(245, 240, 232, 0.5);
+  }
+
+  .closing .section-label {
+    color: var(--warm);
+  }
+
+  .closing .section-label::after {
+    background: var(--warm);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── EMOJI ACCENT ── */
+  .emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+
+  /* ── STAGGER CHILDREN ── */
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .stagger.visible > *:nth-child(2) { transition-delay: 0.15s; }
+  .stagger.visible > *:nth-child(3) { transition-delay: 0.25s; }
+  .stagger.visible > *:nth-child(4) { transition-delay: 0.35s; }
+  .stagger.visible > *:nth-child(5) { transition-delay: 0.45s; }
+  .stagger.visible > *:nth-child(6) { transition-delay: 0.55s; }
+  .stagger.visible > *:nth-child(7) { transition-delay: 0.65s; }
+  .stagger.visible > *:nth-child(8) { transition-delay: 0.75s; }
+
+  .stagger.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    section {
+      padding: 60px 20px;
+    }
+
+    .section-label {
+      font-size: 10px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .pack-list li {
+      font-size: 16px;
+      padding: 12px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="section-inner stagger" id="hero">
+    <span class="section-label" style="text-align:center; display:block;">Para ti</span>
+    <h1>¿Lista?</h1>
+    <p>Todo está listo. Solo necesito que tú también lo estés.</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 1 — MINDSET ═══════════ -->
+<section>
+  <div class="section-inner stagger" id="s1">
+    <span class="section-label">Lo primero</span>
+    <h2>Vas a un lugar cálido.</h2>
+    <p>Todo está organizado. No tienes que planear nada, no tienes que resolver nada.</p>
+    <p>Tu única responsabilidad hoy es <span class="highlight">despejar tu cabeza y entrar en modo vacaciones.</span></p>
+    <div class="divider"></div>
+    <p>Tu papá ya sabe. Así que cierra todo lo que necesites cerrar hoy — mañana desaparecemos por unos días.</p>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 2 — PACKING ═══════════ -->
+<section class="sand-bg">
+  <div class="section-inner stagger" id="s2">
+    <span class="section-label">Tu maleta</span>
+    <h2>Empaca ligero, pero bien.</h2>
+    <ul class="pack-list">
+      <li><span class="bullet"></span>Mínimo 2–3 bikinis</li>
+      <li><span class="bullet"></span>Ropa de playa — algo fácil y cómodo</li>
+      <li><span class="bullet"></span>Un outfit para una cena bonita</li>
+      <li><span class="bullet"></span>Algo cómodo para viajar</li>
+    </ul>
+    <p class="italic">Eso es todo.</p>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 3 — SHOPPING ═══════════ -->
+<section>
+  <div class="section-inner stagger" id="s3">
+    <span class="section-label">Tu misión</span>
+    <h2>Primer paso: ve por un vestido de baño nuevo y algo que te haga sentir increíble.</h2>
+    <p>Juan te está esperando.</p>
+    <p>Él sabe exactamente lo mismo que tú — así que ni lo intentes <span style="opacity:0.6;">😌</span></p>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 4 — MYSTERY ═══════════ -->
+<section class="sand-bg">
+  <div class="section-inner stagger" id="s4">
+    <span class="section-label">Preguntas</span>
+    <h2>Puedes preguntar lo que quieras.</h2>
+    <div class="quote-block">
+      <p>Puede que responda… puede que no.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 5 — RELAX ═══════════ -->
+<section>
+  <div class="section-inner stagger" id="s5">
+    <span class="section-label">Una cosa más</span>
+    <h2>No te preocupes por nada de acá.</h2>
+    <p>No limpies. No pienses de más. No planees.</p>
+    <p>Tampoco te preocupes por el almuerzo — y no tienes que dejar el apartamento perfecto.</p>
+    <p>Yo voy a estar trabajando todo el día. Tú solo enfócate en estar lista.</p>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 6 — CLOSING ═══════════ -->
+<section class="closing">
+  <div class="section-inner stagger" id="s6">
+    <span class="section-label">Mañana</span>
+    <h2>Está lista.</h2>
+    <p>Eso es todo.</p>
+  </div>
+</section>
+
+<script>
+  // ── Intersection Observer for scroll reveals ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.section-inner').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ── Hero loads immediately with slight delay ──
+  setTimeout(() => {
+    document.getElementById('hero').classList.add('visible');
+  }, 400);
+</script>
+
+</body>
+</html>
