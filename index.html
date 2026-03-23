@@ -331,6 +331,40 @@
     opacity: 0.8;
   }
 
+  /* ── RECAP LIST ── */
+  .recap-list {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0;
+    counter-reset: recap;
+  }
+
+  .recap-list li {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--sand-deep);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    counter-increment: recap;
+  }
+
+  .recap-list li:last-child {
+    border-bottom: none;
+  }
+
+  .recap-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--warm);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
   /* ── STAGGER CHILDREN ── */
   .stagger > * {
     opacity: 0;
@@ -373,6 +407,11 @@
       font-size: 16px;
       padding: 12px 0;
     }
+
+    .recap-list li {
+      font-size: 16px;
+      padding: 14px 0;
+    }
   }
 </style>
 </head>
@@ -402,7 +441,7 @@
     <p>Todo está organizado. No tienes que planear nada, no tienes que resolver nada.</p>
     <p>Tu única responsabilidad hoy es <span class="highlight">despejar tu cabeza y entrar en modo vacaciones.</span></p>
     <div class="divider"></div>
-    <p>Intenté contactar a tu papá, pero al parecer cambió su número de WhatsApp, así que le pedimos a tu abuela que hablara con él. Creo que ya sabe a estas alturas, pero ese es uno de los muchos cabos sueltos por aquí.</p>
+    <p>Intenté contactar a tu papá, pero al parecer cambió su número de WhatsApp, así que el plan es que tu abuela haya hablado con él para dejarte esta semana libre.</p>
     <p>Así que cierra todo lo que necesites cerrar hoy, mañana desaparecemos por unos días.</p>
   </div>
 </section>
@@ -413,7 +452,7 @@
     <span class="section-label">Tu maleta</span>
     <h2>Empaca ligero, pero bien.</h2>
     <p>Esta vez quise asegurarme de que pudieras empacar todo lo que quisieras, así que vamos a llevar una maleta de 23 kg para los dos. Yo voy a usar como el 20%, el otro 80% es todo tuyo <span style="opacity:0.6;">😄</span></p>
-    <p>Puedes usar una maleta tuya si prefieres, o te recomiendo que usemos mi maleta azul de viaje, te la puedo subir hoy al apartamento y empacas ahí. Así solo cargamos un morralito cada uno y listo.</p>
+    <p>Así solo cargamos un morralito cada uno y listo.</p>
     <div class="divider"></div>
     <ul class="pack-list">
       <li><span class="bullet"></span>Mínimo 2–3 bikinis</li>
@@ -433,7 +472,7 @@
     <span class="section-label">Tu misión</span>
     <h2>Primer paso: ve por un vestido de baño nuevo y algo que te haga sentir increíble.</h2>
     <p>Me hubiera encantado que el pedido de Shein llegara a tiempo, pero los dos sabemos que eso no iba a pasar, así que espero que esto lo compense <span style="opacity:0.6;">💳</span></p>
-    <p>Juan está listo para acompañarte a comprar.</p>
+    <p>Juan está listo para acompañarte a comprar. Escríbele.</p>
     <p>Él sabe exactamente lo mismo que tú, así que ni lo intentes <span style="opacity:0.6;">😌</span></p>
   </div>
 </section>
@@ -459,12 +498,25 @@
   </div>
 </section>
 
-<!-- ═══════════ SECTION 6 — CLOSING ═══════════ -->
-<section class="closing">
+<!-- ═══════════ SECTION 6 — RECAP ═══════════ -->
+<section class="sand-bg">
   <div class="section-inner stagger" id="s6">
+    <span class="section-label">Entonces</span>
+    <h2>Así queda el plan.</h2>
+    <ul class="recap-list">
+      <li><span class="recap-num">1</span>Ve a revisar afuera de tu apartamento.</li>
+      <li><span class="recap-num">2</span>Ve a comprar un vestido de baño o ropa de playa que te haga sentir increíble.</li>
+      <li><span class="recap-num">3</span>Nos vemos esta noche, la última en Pereira.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 7 — CLOSING ═══════════ -->
+<section class="closing">
+  <div class="section-inner stagger" id="s7">
     <span class="section-label">Mañana</span>
     <h2>Está lista.</h2>
-    <p>Eso es todo.</p>
+    <p>Pero por ahora, puedes empezar por abrir la puerta de tu apartamento.</p>
   </div>
 </section>
 
